@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Dashboard</title>
+    <style>
+    nav ul{
+    	height:460px;
+    	 overflow:hidden; 
+    	 overflow-y:scroll;
+    	}
+      #map {
+        width: 70%;
+        position: relative;
+        float: right;
+        height: 500px;
+        background-color: black;
+        border: 10px;
+      }
+      #dashboard {
+      	position: relative;
+      	width: 30%;
+      	float: left;
+        height: auto;
+        background-color: red;
+        border: 10px;
+      }
+      #header {
+      	position: relative;
+      	float: top;
+      	width: auto;
+        height: 100px;
+        background-color: cyan;
+      }
+    </style>
+  </head>
+  <body>
+  	<div id="header">  
+  		<h3>Header</h3>
+  	</div>
+  	<div id="map">
+    </div>
+    <script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIqX3lWDjPsutWkMnt9XCxSiH3B2_nvPM&callback=initMap">	
+    </script>
+  	<div id="dashboard">  
+  		<nav>
+  			<ul style="list-style-type:none">
+  			
+  			
+                <?php
+                    $con=mysqli_connect("localhost","root","","database");
+                    $result = mysqli_query($con,"SELECT * from driver join vehicle on driver.v_number = vehicle.number ORDER BY start_time DESC LIMIT 30;") or die ("ERROR:".mysql_error());
+                  while($row = mysqli_fetch_array($result)){
+                     # echo '<li><img style="border-radius: 100%; background-color: white; " src="file:///C:/Users/SATYA%20KRISHNA%20VINJAM/Desktop/img.jpg" width=70px height=70px />';#
+                      echo  '<p>'.$row['name'] . '</br>'.$row['contact'] . '</br>'.$row['v_number'] . '</br></p>''</li>';
+
+                  }
+
+                   mysqli_close($con);
+                ?>
+
+            </ul>
+  		</nav>
+  	</div>
+  </body>
+</html>

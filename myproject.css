@@ -1,0 +1,27 @@
+<style>
+      #dashboard {
+      	position: relative;
+      	width: 30%;
+      	float: left;
+        height: auto;
+        background-color: white;
+        border: 10px;
+      }
+      #header {
+      	position: relative;
+      	float: top;
+      	width: auto;
+        height: 100px;
+        background-color: cyan;
+      }
+      #img {
+        position: relative;
+        float: left;
+        border: 0px 20px 0px 0px;
+      }
+      #det {
+        position: relative;     
+        border-left-width: 20px ;
+        border-right-width: 30px;
+      }
+    </style>
